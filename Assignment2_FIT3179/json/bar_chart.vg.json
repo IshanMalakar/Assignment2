@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 400,
+  "title": "Employment by Occupation and Region",
+  "data": {
+    "url": "../data/Employment_industry_Stacked_bar.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "fold": [
+        "Professionals", 
+        "Technician/Trades", 
+        "Managers", 
+        "Clerical/Administrative", 
+        "Community and Personal Service", 
+        "Sales workers", 
+        "Labourers", 
+        "Machinery operators and drivers"
+      ],
+      "as": ["Occupation", "value"]
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "Region",
+      "type": "nominal",
+      "title": "Region",
+      "axis": {"labelAngle": -45}
+    },
+    "y": {
+      "aggregate": "sum",
+      "field": "value",
+      "type": "quantitative",
+      "title": "Number of Employees"
+    },
+    "color": {
+      "field": "Occupation",
+      "type": "nominal",
+      "title": "Occupation"
+    },
+    "tooltip": [
+      {"field": "Occupation", "type": "nominal", "title": "Occupation"},
+      {"field": "value", "type": "quantitative", "title": "Number of Employees"}
+    ]
+  }
+}

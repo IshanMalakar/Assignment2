@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#chart-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+#line_chart {
+    width: 100%;
+    height: auto;
+}
