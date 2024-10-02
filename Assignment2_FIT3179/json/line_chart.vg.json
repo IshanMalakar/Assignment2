@@ -1,8 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
-  "height": 400,
+  "width": 1350,
+  "height": 600,
   "title": "Unemployment Rate Over Time for Victoria",
+  "background":"#ffffff", 
   "data": {
     "url": "../data/Unemployment_Line_chart.csv",
     "format": {"type": "csv"}
@@ -25,7 +26,11 @@
     "color": {
       "field": "Year",
       "type": "nominal",
-      "title": "Year"
+      "title": "Year",
+      "scale": {
+        "domain": ["2018", "2019", "2020", "2021", "2022", "2023"],
+        "range": ["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f"]  
+      }
     },
     "tooltip": [
       {"field": "Month", "type": "nominal", "title": "Month"},
@@ -54,4 +59,5 @@
       "filter": "yearFilter == null || datum.Year == yearFilter"
     }
   ]
+ 
 }

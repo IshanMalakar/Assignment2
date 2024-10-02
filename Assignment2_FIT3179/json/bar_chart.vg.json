@@ -1,49 +1,91 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
-  "height": 400,
-  "title": "Employment by Occupation and Region",
+  "description": "Stacked bar chart for Employment by Occupation in Regions",
+  "width": 260,
+  "height": 375,
+  "title": {
+    "text": "Employment by Occupation and Region",
+    "fontSize": 16,
+    "color": "black",
+    "dy": -20
+  },
+  "background": "#bbbbbb",  
   "data": {
     "url": "../data/Employment_industry_Stacked_bar.csv",
-    "format": {"type": "csv"}
+    "format": { "type": "csv" }
   },
   "transform": [
     {
       "fold": [
-        "Professionals", 
-        "Technician/Trades", 
-        "Managers", 
-        "Clerical/Administrative", 
-        "Community and Personal Service", 
-        "Sales workers", 
-        "Labourers", 
+        "Professionals",
+        "Technician/Trades",
+        "Managers",
+        "Clerical/Administrative",
+        "Community and Personal Service",
+        "Sales workers",
+        "Labourers",
         "Machinery operators and drivers"
       ],
       "as": ["Occupation", "value"]
+    },
+    {
+      "filter": "selectedRegion === 'All' || datum.Region == selectedRegion"  
     }
   ],
-  "mark": "bar",
+  "mark": {
+    "type": "bar",
+    "tooltip": true
+  },
   "encoding": {
     "x": {
       "field": "Region",
       "type": "nominal",
-      "title": "Region",
-      "axis": {"labelAngle": -45}
+      "axis": { "labelAngle": -45, "title": "Region", "labelFontSize": 10 }
     },
     "y": {
       "aggregate": "sum",
       "field": "value",
       "type": "quantitative",
-      "title": "Number of Employees"
+      "title": "Number of Employees",
+      "axis": { "titleFontSize": 12 }
     },
     "color": {
       "field": "Occupation",
       "type": "nominal",
-      "title": "Occupation"
+      "title": "Occupation",
+      "scale": {
+        "range": [
+          "#1f78b4",  
+          "#33a02c",  
+          "#a6cee3",  
+          "#b2df8a",  
+          "#fb9a99",  
+          "#fdbf6f",  
+          "#cab2d6",  
+          "#ffff99"   
+        ]
+      }
     },
     "tooltip": [
-      {"field": "Occupation", "type": "nominal", "title": "Occupation"},
-      {"field": "value", "type": "quantitative", "title": "Number of Employees"}
+      { "field": "Occupation", "type": "nominal", "title": "Occupation" },
+      { "field": "value", "type": "quantitative", "title": "Number of Employees" }
     ]
-  }
+  },
+  "params": [
+    {
+      "name": "selectedRegion",  
+      "value": "All",  
+      "bind": {
+        "input": "select",  
+        "options": [
+          "All", "Ballarat", "Bendigo", "Geelong", "Hume", "Latrobe - Gippsland", "Melbourne - Inner",
+          "Melbourne - Inner East", "Melbourne - Inner South", "Melbourne - North East",
+          "Melbourne - North West", "Melbourne - Outer East", "Melbourne - South East",
+          "Melbourne - West", "Mornington Peninsula", "North West", "Shepparton", 
+          "Warrnambool and South West"
+        ],
+        "name": "Select Region: "
+      }
+    }
+  ]
 }

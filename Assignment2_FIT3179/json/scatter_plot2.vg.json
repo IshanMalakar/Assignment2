@@ -1,0 +1,54 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Scatter plot showing employment size and growth by industry and region.",
+    "height":600,
+    "width":350,
+    "background":"#bbbbbb", 
+    "data": {
+      "url": "../data/Bubble_chart_.csv",
+      "format": { "type": "csv" }
+    },
+    "mark": "point",
+    "encoding": {
+      "x": {
+        "field": "Employment_size",
+        "type": "quantitative",
+        "title": "Employment Size",
+        "scale": {
+          "zero": false
+        }
+      },
+      "y": {
+        "field": "Employment_growth",
+        "type": "quantitative",
+        "title": "Employment Growth (%)",
+        "scale": {
+          "zero": false
+        }
+      },
+      "color": {
+        "field": "Industry",
+        "type": "nominal",
+        "title": "Industry",
+        "legend": { "orient": "right" }
+      },
+      "shape": {
+        "field": "Region",
+        "type": "nominal",
+        "title": "Region"
+      },
+      "tooltip": [
+        { "field": "Industry", "type": "nominal", "title": "Industry" },
+        { "field": "Region", "type": "nominal", "title": "Region" },
+        { "field": "Employment_size", "type": "quantitative", "title": "Employment Size" },
+        { "field": "Employment_growth", "type": "quantitative", "title": "Employment Growth (%)" }
+      ]
+    },
+    "config": {
+      "axis": {
+        "labelFontSize": 12,
+        "titleFontSize": 14
+      }
+    }
+  }
+  
